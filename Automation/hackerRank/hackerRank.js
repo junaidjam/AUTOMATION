@@ -1,8 +1,9 @@
 const puppeteer = require("puppeteer");
 
 // let {email} = 
-let email = "";
-let password = "";
+// let email = "";
+// let password = "";
+
 let curTab;
 let browserOPenPromise = puppeteer.launch({
     headless: false,
