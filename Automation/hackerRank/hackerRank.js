@@ -1,9 +1,8 @@
 const puppeteer = require("puppeteer");
 
-// let {email} = 
+let { email, password } = require('./secret'); 
 // let email = "";
 // let password = "";
-
 let curTab;
 let browserOPenPromise = puppeteer.launch({
     headless: false,
@@ -41,9 +40,17 @@ browserOPenPromise
         let willBeLoggedInPromise = curTab.click(".ui-btn.ui-btn-large.ui-btn-primary.auth-button.ui-btn-styled");
         return willBeLoggedInPromise;
     })
-    .then(function(){
-        console.log("Successfully Logged In");
-    })
-    .catch(function(err){
-        console.log(err);
-    });
+    .then(function () {
+        console.log("logged into hackerrank successfully");
+        //waitAndClick will wait for the selector to load , and then click on the node
+        let algorithmTabWillBeOPenedPromise = waitAndClick(
+          "div[data-automation='algorithms']"
+        );
+        return algorithmTabWillBeOPenedPromise;
+      })
+      .then(function () {
+        console.log("algorithm page is opened");
+      })
+      .catch(function(err){
+          console.log(err);
+      });
